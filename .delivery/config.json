@@ -9,8 +9,8 @@
       "foodcritic": {
         "ignore_rules": ["FC011", "FC031", "FC045"],
         "only_rules": [""],
-        "excludes": [""],
-        "fail_tags": [""]
+        "excludes": ["spec", "test"],
+        "fail_tags": ["any"]
       }
     }
   },
