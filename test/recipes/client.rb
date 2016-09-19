@@ -1,18 +1,19 @@
-# # encoding: utf-8
+# My compliance profile for checking the SSH client config
 
-# Inspec test for recipe demo_ssh::client
+title 'SSH Client'
 
-# The Inspec reference, with examples and extensive documentation, can be
-# found at https://docs.chef.io/inspec_reference.html
+control 'ssh-1' do
+  impact 1.0
+  title 'Client: Set SSH protocol version to 2'
+  desc "
+    Set the SSH protocol version to 2. Don't use legacy
+    insecure SSHv1 connections anymore.
+  "
 
-unless os.windows?
-  describe user('root') do
-    it { should exist }
-    skip 'This is an example test, replace with your own test.'
+  tag cis: 'CIS-6.2.1'
+  tag my_corp: 'AUDIT-2015-4.7F'
+
+  describe ssh_config do
+    its('Protocol') { should eq('2') }
   end
-end
-
-describe port(80) do
-  it { should_not be_listening }
-  skip 'This is an example test, replace with your own test.'
 end

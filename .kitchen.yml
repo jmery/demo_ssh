@@ -9,13 +9,13 @@ verifier:
   name: inspec
 
 platforms:
-  - name: ubuntu-16.04
-  - name: centos-7.2
+  - name: ubuntu-14.04
 
 suites:
   - name: default
     run_list:
-      - recipe[demo_ssh::default]
+      - recipe[demo_ssh::client]
+      - recipe[demo_ssh::server]
     verifier:
       inspec_tests:
         - test/recipes

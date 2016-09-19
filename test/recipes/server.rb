@@ -1,18 +1,51 @@
-# # encoding: utf-8
+# My compliance profile for checking the SSH server config
 
-# Inspec test for recipe demo_ssh::server
+title 'SSH Server'
 
-# The Inspec reference, with examples and extensive documentation, can be
-# found at https://docs.chef.io/inspec_reference.html
+control 'sshd-1' do
+  impact 1.0
+  title 'Server: Set protocol version to SSHv2'
+  desc "
+    Set the SSH protocol version to 2. Don't use legacy insecure SSHv1 connections anymore.
+  "
 
-unless os.windows?
-  describe user('root') do
-    it { should exist }
-    skip 'This is an example test, replace with your own test.'
+  tag cis: 'CIS-6.2.1'
+  tag my_corp: 'AUDIT-2015-4.7F'
+  ref 'Corporate Requirements', url: 'https://corpweb/audit/'
+
+  describe sshd_config do
+    its('Protocol') { should eq('2') }
   end
 end
 
-describe port(80) do
-  it { should_not be_listening }
-  skip 'This is an example test, replace with your own test.'
+control 'sshd-2' do
+  impact 1.0
+  title 'Server: Disable X11 forwarding'
+  desc '
+    Prevent X11 forwarding by default, as it can be used in a limited way to enable attacks.
+  '
+
+  tag cis: 'CIS-6.2.4'
+  tag my_corp: 'AUDIT-2015-4.7G'
+  ref 'Corporate Requirements', url: 'https://corpweb/audit/'
+
+  describe sshd_config do
+    its('X11Forwarding') { should eq('no') }
+  end
+end
+
+control 'sshd-3' do
+  impact 0.7
+  title 'Server: MaxAuthTries should be 4 or less'
+  desc '
+    Limit SSH login attempts to 4 to mitigate brute force login attempts.
+  '
+
+  tag cis: 'CIS-6.2.5'
+  tag my_corp: 'AUDIT-2015-4.7AQ'
+  ref 'Corporate Requirements', url: 'https://corpweb/audit/'
+
+  describe sshd_config do
+    its('X11UseLocalhost') { should eq('yes') }
+  end
 end
