@@ -4,6 +4,15 @@
     "name": "build_cookbook",
     "path": ".delivery/build_cookbook"
   },
+  "delivery-truck": {
+    "lint": {
+      "foodcritic": {
+        "ignore_rules": ["FC011", "FC031", "FC045"],
+        "excludes": ["spec", "test"],
+        "fail_tags": ["any"]
+      }
+    }
+  },
   "skip_phases": [],
   "build_nodes": {},
   "dependencies": []
