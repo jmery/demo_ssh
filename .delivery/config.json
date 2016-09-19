@@ -8,7 +8,6 @@
     "lint": {
       "foodcritic": {
         "ignore_rules": ["FC011", "FC031", "FC045"],
-        "only_rules": [""],
         "excludes": ["spec", "test"],
         "fail_tags": ["any"]
       }
