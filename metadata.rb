@@ -1,9 +1,9 @@
 name 'demo_ssh'
-maintainer 'The Authors'
-maintainer_email 'you@example.com'
+maintainer 'Jeff Mery'
+maintainer_email 'jmery@chef.io'
 license 'all_rights'
-description 'Installs/Configures demo_ssh'
-long_description 'Installs/Configures demo_ssh'
+description 'Configures basic SSH'
+long_description 'Configures basic SSH'
 version '0.1.0'
 
 # If you upload to Supermarket you should set this so your cookbook

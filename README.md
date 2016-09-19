@@ -1,4 +1,4 @@
-# demo_ssh
+# Overview
 
-TODO: Enter the cookbook description here.
+Demo cookbook showing basic SSH remediation
 
